@@ -1,0 +1,1 @@
+bigquery_schema_generator==1.5
