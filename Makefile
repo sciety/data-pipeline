@@ -47,3 +47,4 @@ update-db-dump:
 		./events.jsonl
 
 update-datastudio: update-db-dump .bq-update-events
+	./scripts/upload-ingress-logs-from-cloudwatch-to-bigquery.sh
