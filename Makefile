@@ -27,17 +27,14 @@ update-db-dump:
 	kubectl wait --for condition=Ready pod psql
 	kubectl exec psql -- psql -c "copy (select json_agg(events) from events) To STDOUT;" | sed -e 's/\\n//g' > ./events.json
 	kubectl delete --wait=false pod psql
-	gcloud config set project sciety
-	gsutil cp events.json gs://sciety-data/events/events.json
-	gsutil acl set public-read gs://sciety-data/events/events.json
 
 .gs-events-json-to-jsonl:
-	gsutil cat "gs://sciety-data/events/events.json" \
+	cat ./events.json \
 		| jq -c '.[]' \
-		| gsutil cp - "gs://sciety-data/events/events.jsonl" \
+		> ./events.jsonl \
 
 .bq-generate-schema: venv .gs-events-json-to-jsonl
-	gsutil cat "gs://sciety-data/events/events.jsonl" \
+	cat ./events.jsonl \
 		| venv/bin/generate-schema > events.bq-schema.json
 
 .bq-update-events: .gs-events-json-to-jsonl .bq-generate-schema
@@ -47,6 +44,6 @@ update-db-dump:
 		--schema=events.bq-schema.json \
 		--source_format=NEWLINE_DELIMITED_JSON \
 		de_proto.sciety_event_v1 \
-		"gs://sciety-data/events/events.jsonl"
+		./events.jsonl
 
 update-datastudio: update-db-dump .bq-update-events
