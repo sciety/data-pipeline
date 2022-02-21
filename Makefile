@@ -7,6 +7,7 @@ CLOUDWATCH_FROM_DATE = $(shell ./scripts/determine-cloudwatch-from-date-based-on
 CLOUDWATCH_TO_DATE = $(shell date '+%Y-%m-%d')
 CLOUDWATCH_TARGET_DIR = ./logs/cloudwatch
 CLOUDWATCH_JSONL_FILE = ./logs/ingress.jsonl
+CLOUDWATCH_JSONL_SCHEMA_FILE = $(CLOUDWATCH_JSONL_FILE).bq-schema.json
 
 
 .PHONY: clean update*
@@ -73,10 +74,15 @@ update-db-dump:
 		"$(CLOUDWATCH_TARGET_DIR)" \
 		"$(CLOUDWATCH_JSONL_FILE)"
 
+.generate-schema-for-cloudwatch-jsonl-file: venv
+	cat "$(CLOUDWATCH_JSONL_FILE)" \
+		| venv/bin/generate-schema \
+		> "$(CLOUDWATCH_JSONL_SCHEMA_FILE)"
+
 .upload-ingress-jsonl-to-bigquery:
 	bq load \
 		--project_id=elife-data-pipeline \
-		--autodetect \
+		--schema="$(CLOUDWATCH_JSONL_SCHEMA_FILE)" \
 		--source_format=NEWLINE_DELIMITED_JSON \
 		de_proto.sciety_ingress_v1 \
 		"$(CLOUDWATCH_JSONL_FILE)"
@@ -85,6 +91,7 @@ update-db-dump:
 	$(MAKE) .cloudwatch-show-info
 	$(MAKE) .export-and-download-from-cloudwatch
 	$(MAKE) .convert-cloudwatch-logs-to-jsonl
+	$(MAKE) .generate-schema-for-cloudwatch-jsonl-file
 	$(MAKE) .upload-ingress-jsonl-to-bigquery
 
 .upload-ingress-logs-from-cloudwatch-to-bigquery:
