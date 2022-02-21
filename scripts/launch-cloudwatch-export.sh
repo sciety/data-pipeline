@@ -28,7 +28,7 @@ fi
 from_epoch_ms="$($DATE --date "${from_date} 00:00:00 +0000" +%s)000"
 to_epoch_ms="$($DATE --date "${to_date} 00:00:00 +0000" +%s)000"
 
-cloudWatchTaskId=$(aws logs create-export-task \
+cloudwatch_task_id=$(aws logs create-export-task \
 		--log-group-name '/aws/containerinsights/libero-eks--franklin/application' \
 		--log-stream-name-prefix 'ingress-nginx-controller-' \
 		--from  $from_epoch_ms \
@@ -36,4 +36,4 @@ cloudWatchTaskId=$(aws logs create-export-task \
 		--destination "${destination_bucket}" \
 		--destination-prefix "${destination_prefix}" \
 			| jq -r '.taskId')
-echo $cloudWatchTaskId
+echo $cloudwatch_task_id
