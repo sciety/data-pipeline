@@ -18,7 +18,7 @@ destination_prefix="ingress-nginx-controller-$from_date-$to_date"
 
 echo "destination_prefix: ${destination_prefix}"
 
-cloudWatchTaskId=$($scripts/launch-cloud-watch-export.sh "${from_date}" "${to_date}" "${destination_bucket}" "${destination_prefix}")
+cloudWatchTaskId=$($scripts/launch-cloudwatch-export.sh "${from_date}" "${to_date}" "${destination_bucket}" "${destination_prefix}")
 
 if [ -z "${cloudWatchTaskId}" ]; then
     # skipping an empty cloudwatch export (launch script will log message)
@@ -27,7 +27,7 @@ fi
 
 echo "cloudWatchTaskId: ${cloudWatchTaskId}"
 
-$scripts/wait-for-cloud-watch-task-completion.sh $cloudWatchTaskId
+$scripts/wait-for-cloudwatch-task-completion.sh $cloudWatchTaskId
 
 logs_uri="s3://${destination_bucket}/${destination_prefix}/$cloudWatchTaskId"
 
