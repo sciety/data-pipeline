@@ -3,6 +3,12 @@ AWS_DEFAULT_REGION := us-east-1
 export AWS_DEFAULT_REGION
 
 
+CLOUDWATCH_FROM_DATE = $(shell ./scripts/determine-cloudwatch-from-date-based-on-existing-bigquery-data.sh)
+CLOUDWATCH_TO_DATE = $(shell date '+%Y-%m-%d')
+CLOUDWATCH_TARGET_DIR = ./logs/cloudwatch
+CLOUDWATCH_JSONL_FILE = ./logs/ingress.jsonl
+
+
 .PHONY: clean update*
 
 .env:
@@ -46,5 +52,48 @@ update-db-dump:
 		de_proto.sciety_event_v1 \
 		./events.jsonl
 
-update-datastudio: update-db-dump .bq-update-events
-	./scripts/upload-ingress-logs-from-cloudwatch-to-bigquery.sh
+.upload-events-from-db-to-bigquery:
+	$(MAKE) update-db-dump
+	$(MAKE) .bq-update-events
+
+.cloudwatch-show-info:
+	@echo "From: $(CLOUDWATCH_FROM_DATE)"
+	@echo "To: $(CLOUDWATCH_TO_DATE)"
+	@echo "Target dir: $(CLOUDWATCH_TARGET_DIR)"
+
+.export-and-download-from-cloudwatch:
+	rm -rf "$(CLOUDWATCH_TARGET_DIR)"
+	./scripts/export-and-download-from-cloudwatch.sh \
+		"$(CLOUDWATCH_FROM_DATE)" \
+		"$(CLOUDWATCH_TO_DATE)" \
+		"$(CLOUDWATCH_TARGET_DIR)"
+
+.convert-cloudwatch-logs-to-jsonl:
+	./scripts/convert-cloudwatch-logs-to-jsonl.sh \
+		"$(CLOUDWATCH_TARGET_DIR)" \
+		"$(CLOUDWATCH_JSONL_FILE)"
+
+.upload-ingress-jsonl-to-bigquery:
+	bq load \
+		--project_id=elife-data-pipeline \
+		--autodetect \
+		--source_format=NEWLINE_DELIMITED_JSON \
+		de_proto.sciety_ingress_v1 \
+		"$(CLOUDWATCH_JSONL_FILE)"
+
+.do-upload-ingress-logs-from-cloudwatch-to-bigquery:
+	$(MAKE) .cloudwatch-show-info
+	$(MAKE) .export-and-download-from-cloudwatch
+	$(MAKE) .convert-cloudwatch-logs-to-jsonl
+	$(MAKE) .upload-ingress-jsonl-to-bigquery
+
+.upload-ingress-logs-from-cloudwatch-to-bigquery:
+ifeq "$(CLOUDWATCH_FROM_DATE)" "$(CLOUDWATCH_TO_DATE)"
+		@echo "Not uploading cloudwatch ingress logs to BigQuery because it has already ran today."
+else
+		$(MAKE) .do-upload-ingress-logs-from-cloudwatch-to-bigquery
+endif
+
+update-datastudio: \
+	.upload-events-from-db-to-bigquery \
+	.upload-ingress-logs-from-cloudwatch-to-bigquery
