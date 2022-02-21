@@ -88,11 +88,11 @@ update-db-dump:
 	$(MAKE) .upload-ingress-jsonl-to-bigquery
 
 .upload-ingress-logs-from-cloudwatch-to-bigquery:
-ifeq "$(CLOUDWATCH_FROM_DATE)" "$(CLOUDWATCH_TO_DATE)"
-		@echo "Not uploading cloudwatch ingress logs to BigQuery because it has already ran today."
-else
-		$(MAKE) .do-upload-ingress-logs-from-cloudwatch-to-bigquery
-endif
+	@if [ "$(CLOUDWATCH_FROM_DATE)" = "$(CLOUDWATCH_TO_DATE)" ]; then \
+			echo "Not uploading cloudwatch ingress logs to BigQuery because it has already ran today."; \
+	else \
+			$(MAKE) .do-upload-ingress-logs-from-cloudwatch-to-bigquery; \
+	fi
 
 update-datastudio: \
 	.upload-events-from-db-to-bigquery \
