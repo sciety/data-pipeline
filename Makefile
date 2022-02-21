@@ -96,9 +96,9 @@ update-db-dump:
 
 .upload-ingress-logs-from-cloudwatch-to-bigquery:
 	@if [ "$(CLOUDWATCH_FROM_DATE)" = "$(CLOUDWATCH_TO_DATE)" ]; then \
-			echo "Not uploading cloudwatch ingress logs to BigQuery because it has already ran today."; \
+		echo "Not uploading cloudwatch ingress logs to BigQuery because it has already ran today."; \
 	else \
-			$(MAKE) .do-upload-ingress-logs-from-cloudwatch-to-bigquery; \
+		$(MAKE) .do-upload-ingress-logs-from-cloudwatch-to-bigquery; \
 	fi
 
 update-datastudio: \
