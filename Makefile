@@ -82,7 +82,9 @@ update-db-dump:
 .upload-ingress-jsonl-to-bigquery:
 	bq load \
 		--project_id=elife-data-pipeline \
+		--noreplace \
 		--schema="$(CLOUDWATCH_JSONL_SCHEMA_FILE)" \
+		--schema_update_option=ALLOW_FIELD_ADDITION \
 		--source_format=NEWLINE_DELIMITED_JSON \
 		de_proto.sciety_ingress_v1 \
 		"$(CLOUDWATCH_JSONL_FILE)"
