@@ -3,6 +3,13 @@ AWS_DEFAULT_REGION := us-east-1
 export AWS_DEFAULT_REGION
 
 
+CLOUDWATCH_FROM_DATE = $(shell ./scripts/determine-cloudwatch-from-date-based-on-existing-bigquery-data.sh)
+CLOUDWATCH_TO_DATE = $(shell date '+%Y-%m-%d')
+CLOUDWATCH_TARGET_DIR = ./logs/cloudwatch
+CLOUDWATCH_JSONL_FILE = ./logs/ingress.jsonl
+CLOUDWATCH_JSONL_SCHEMA_FILE = $(CLOUDWATCH_JSONL_FILE).bq-schema.json
+
+
 .PHONY: clean update*
 
 .env:
@@ -46,5 +53,55 @@ update-db-dump:
 		de_proto.sciety_event_v1 \
 		./events.jsonl
 
-update-datastudio: update-db-dump .bq-update-events
-	./scripts/upload-ingress-logs-from-cloudwatch-to-bigquery.sh
+.upload-events-from-db-to-bigquery:
+	$(MAKE) update-db-dump
+	$(MAKE) .bq-update-events
+
+.cloudwatch-show-info:
+	@echo "From: $(CLOUDWATCH_FROM_DATE)"
+	@echo "To: $(CLOUDWATCH_TO_DATE)"
+	@echo "Target dir: $(CLOUDWATCH_TARGET_DIR)"
+
+.export-and-download-from-cloudwatch:
+	rm -rf "$(CLOUDWATCH_TARGET_DIR)"
+	./scripts/export-and-download-from-cloudwatch.sh \
+		"$(CLOUDWATCH_FROM_DATE)" \
+		"$(CLOUDWATCH_TO_DATE)" \
+		"$(CLOUDWATCH_TARGET_DIR)"
+
+.convert-cloudwatch-logs-to-jsonl:
+	./scripts/convert-cloudwatch-logs-to-jsonl.sh \
+		"$(CLOUDWATCH_TARGET_DIR)" \
+		"$(CLOUDWATCH_JSONL_FILE)"
+
+.generate-schema-for-cloudwatch-jsonl-file: venv
+	cat "$(CLOUDWATCH_JSONL_FILE)" \
+		| venv/bin/generate-schema \
+		> "$(CLOUDWATCH_JSONL_SCHEMA_FILE)"
+
+.upload-ingress-jsonl-to-bigquery:
+	bq load \
+		--project_id=elife-data-pipeline \
+		--schema="$(CLOUDWATCH_JSONL_SCHEMA_FILE)" \
+		--source_format=NEWLINE_DELIMITED_JSON \
+		de_proto.sciety_ingress_v1 \
+		"$(CLOUDWATCH_JSONL_FILE)"
+
+.do-upload-ingress-logs-from-cloudwatch-to-bigquery:
+	$(MAKE) .cloudwatch-show-info
+	$(MAKE) .export-and-download-from-cloudwatch
+	$(MAKE) .convert-cloudwatch-logs-to-jsonl
+	$(MAKE) .generate-schema-for-cloudwatch-jsonl-file
+	$(MAKE) .upload-ingress-jsonl-to-bigquery
+
+.upload-ingress-logs-from-cloudwatch-to-bigquery:
+	@if [ "$(CLOUDWATCH_FROM_DATE)" = "$(CLOUDWATCH_TO_DATE)" ]; then \
+		echo "Not uploading cloudwatch ingress logs to BigQuery because it has already ran today."; \
+	else \
+		$(MAKE) CLOUDWATCH_FROM_DATE="$(CLOUDWATCH_FROM_DATE)" \
+			.do-upload-ingress-logs-from-cloudwatch-to-bigquery; \
+	fi
+
+update-datastudio: \
+	.upload-events-from-db-to-bigquery \
+	.upload-ingress-logs-from-cloudwatch-to-bigquery
