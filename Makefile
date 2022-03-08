@@ -10,7 +10,7 @@ CLOUDWATCH_JSONL_FILE = ./logs/ingress.jsonl
 CLOUDWATCH_JSONL_SCHEMA_FILE = $(CLOUDWATCH_JSONL_FILE).bq-schema.json
 
 
-.PHONY: clean download-events-from-s3 update*
+.PHONY: clean download-events-from-s3 ship-events-to-s3 update*
 
 .env:
 	cp .env.example .env
@@ -34,6 +34,14 @@ update-db-dump:
 	kubectl wait --for condition=Ready pod psql
 	kubectl exec psql -- psql -c "copy (select json_agg(events) from events) To STDOUT;" | sed -e 's/\\n//g' > ./events.json
 	kubectl delete --wait=false pod psql
+
+ship-events-to-s3:
+	kubectl run --rm --attach ship-events \
+		--image=amazon/aws-cli:2.4.23 \
+		--command=true \
+		--restart=Never \
+		-- \
+		aws s3 cp "./events.json" "s3://sciety-data-extractions/events.json"
 
 download-events-from-s3:
 	aws s3 cp "s3://sciety-data-extractions/events.json" "./events.json"
