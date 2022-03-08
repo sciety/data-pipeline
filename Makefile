@@ -23,18 +23,6 @@ venv: requirements.txt requirements.build.txt
 	./venv/bin/pip install -r requirements.build.txt
 	./venv/bin/pip install -r requirements.txt
 
-update-db-dump:
-	kubectl run psql \
-	--image=postgres:12.3 \
-	--env=PGHOST=$$(kubectl get secret hive-prod-rds-postgres -o json | jq -r '.data."postgresql-host"'| base64 -d) \
-	--env=PGDATABASE=$$(kubectl get secret hive-prod-rds-postgres -o json | jq -r '.data."postgresql-database"'| base64 -d) \
-	--env=PGUSER=$$(kubectl get secret hive-prod-rds-postgres -o json | jq -r '.data."postgresql-username"'| base64 -d) \
-	--env=PGPASSWORD=$$(kubectl get secret hive-prod-rds-postgres -o json | jq -r '.data."postgresql-password"'| base64 -d) \
-	-- sleep 60
-	kubectl wait --for condition=Ready pod psql
-	kubectl exec psql -- psql -c "copy (select json_agg(events) from events) To STDOUT;" | sed -e 's/\\n//g' > ./events.json
-	kubectl delete --wait=false pod psql
-
 ship-events-to-s3:
 	kubectl run --rm --attach ship-events \
 		--image=amazon/aws-cli:2.4.23 \
@@ -71,7 +59,8 @@ download-events-from-s3:
 		./events.jsonl
 
 .upload-events-from-db-to-bigquery:
-	$(MAKE) update-db-dump
+	$(MAKE) ship-events-to-s3
+	$(MAKE) download-events-from-s3
 	$(MAKE) .bq-update-events
 
 .cloudwatch-show-info:
