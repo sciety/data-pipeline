@@ -41,7 +41,7 @@ ship-events-to-s3:
 		--command=true \
 		--restart=Never \
 		-- \
-		aws s3 cp "./events.json" "s3://sciety-data-extractions/events.json"
+		bash -c 'touch events.json && aws s3 cp "./events.json" "s3://sciety-data-extractions/events.json"'
 
 download-events-from-s3:
 	aws s3 cp "s3://sciety-data-extractions/events.json" "./events.json"
