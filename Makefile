@@ -40,6 +40,8 @@ ship-events-to-s3:
 		--image=amazon/aws-cli:2.4.23 \
 		--command=true \
 		--restart=Never \
+		--env=AWS_ACCESS_KEY_ID=$$(kubectl get secret sciety-events-shipper-aws-credentials -o json | jq -r '.data."id"'| base64 -d) \
+		--env=AWS_SECRET_ACCESS_KEY=$$(kubectl get secret sciety-events-shipper-aws-credentials -o json | jq -r '.data."secret"'| base64 -d) \
 		-- \
 		bash -c 'touch events.json && aws s3 cp "./events.json" "s3://sciety-data-extractions/events.json"'
 
