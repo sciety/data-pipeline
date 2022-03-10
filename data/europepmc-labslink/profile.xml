@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<providers>
+  <provider>
+    <id>2112</id>
+    <resourceName>Sciety</resourceName>
+    <description>The home of public preprint evaluation</description>
+    <email>team+labslink@sciety.org</email>
+  </provider>
+</providers>
