@@ -70,5 +70,13 @@
   {
     "id": "b5f31635-d32b-4df9-92a5-0325a1524343",
     "name": "PeerRef"
+  },
+  {
+    "id": "d6e1a913-76f8-40dc-9074-8eac033e1bc8",
+    "name": "GigaScience"
+  },
+  {
+    "id": "f7a7aec3-8b1c-4b81-b098-f3f2e4eefe58",
+    "name": "GigaByte"
   }
 ]
