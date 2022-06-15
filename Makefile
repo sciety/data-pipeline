@@ -129,3 +129,15 @@ bq-update-groups:
 		--source_format=NEWLINE_DELIMITED_JSON \
 		de_proto.sciety_group_v1 \
 		"data/sciety-groups.jsonl"
+
+bq-update-known-users:
+	cat "data/sciety-known-users.json" \
+		| jq -c '.[]' \
+		| tee "data/sciety-known-users.jsonl" \
+		&& bq load \
+		--project_id=elife-data-pipeline \
+		--autodetect \
+		--replace \
+		--source_format=NEWLINE_DELIMITED_JSON \
+		de_proto.sciety_known_user_v1 \
+		"data/sciety-known-users.jsonl"
