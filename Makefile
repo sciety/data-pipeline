@@ -80,10 +80,10 @@ download-events-from-s3:
 		"$(CLOUDWATCH_TO_DATE)" \
 		"$(CLOUDWATCH_TARGET_DIR)"
 
-.convert-cloudwatch-logs-to-jsonl:
-	./scripts/convert-cloudwatch-logs-to-jsonl.sh \
+.convert-cloudwatch-logs-to-jsonl-gz:
+	./scripts/convert-cloudwatch-logs-to-jsonl-gz.sh \
 		"$(CLOUDWATCH_TARGET_DIR)" \
-		"$(CLOUDWATCH_JSONL_FILE)"
+		"$(CLOUDWATCH_JSONL_GZ_FILE)"
 
 .generate-schema-for-cloudwatch-jsonl-gz-file: venv
 	zcat "$(CLOUDWATCH_JSONL_GZ_FILE)" \
@@ -103,8 +103,7 @@ download-events-from-s3:
 .do-upload-ingress-logs-from-cloudwatch-to-bigquery:
 	$(MAKE) .cloudwatch-show-info
 	$(MAKE) .export-and-download-from-cloudwatch
-	$(MAKE) .convert-cloudwatch-logs-to-jsonl
-	gzip --keep "$(CLOUDWATCH_JSONL_FILE)"
+	$(MAKE) .convert-cloudwatch-logs-to-jsonl-gz
 	$(MAKE) .generate-schema-for-cloudwatch-jsonl-gz-file
 	$(MAKE) .upload-ingress-jsonl-gz-to-bigquery
 
