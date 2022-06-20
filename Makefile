@@ -90,8 +90,7 @@ download-events-from-s3:
 		| venv/bin/generate-schema \
 		> "$(CLOUDWATCH_JSONL_SCHEMA_FILE)"
 
-.upload-ingress-jsonl-to-bigquery:
-	gzip --keep "$(CLOUDWATCH_JSONL_FILE)"
+.upload-ingress-jsonl-gz-to-bigquery:
 	bq load \
 		--project_id=elife-data-pipeline \
 		--noreplace \
@@ -105,8 +104,9 @@ download-events-from-s3:
 	$(MAKE) .cloudwatch-show-info
 	$(MAKE) .export-and-download-from-cloudwatch
 	$(MAKE) .convert-cloudwatch-logs-to-jsonl
+	gzip --keep "$(CLOUDWATCH_JSONL_FILE)"
 	$(MAKE) .generate-schema-for-cloudwatch-jsonl-file
-	$(MAKE) .upload-ingress-jsonl-to-bigquery
+	$(MAKE) .upload-ingress-jsonl-gz-to-bigquery
 
 .upload-ingress-logs-from-cloudwatch-to-bigquery:
 	@if [ "$(CLOUDWATCH_FROM_DATE)" = "$(CLOUDWATCH_TO_DATE)" ]; then \
