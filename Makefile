@@ -90,6 +90,7 @@ download-events-from-s3:
 		> "$(CLOUDWATCH_JSONL_SCHEMA_FILE)"
 
 .upload-ingress-jsonl-to-bigquery:
+	gzip --keep "$(CLOUDWATCH_JSONL_FILE)"
 	bq load \
 		--project_id=elife-data-pipeline \
 		--noreplace \
@@ -97,7 +98,7 @@ download-events-from-s3:
 		--schema_update_option=ALLOW_FIELD_ADDITION \
 		--source_format=NEWLINE_DELIMITED_JSON \
 		de_proto.sciety_ingress_v1 \
-		"$(CLOUDWATCH_JSONL_FILE)"
+		"$(CLOUDWATCH_JSONL_FILE).gz"
 
 .do-upload-ingress-logs-from-cloudwatch-to-bigquery:
 	$(MAKE) .cloudwatch-show-info
