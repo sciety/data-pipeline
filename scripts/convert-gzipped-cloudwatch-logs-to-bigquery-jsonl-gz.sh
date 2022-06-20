@@ -2,8 +2,10 @@
 
 set -euo pipefail
 
-zcat $1 \
+log_gz_file="$1"
+
+zcat $log_gz_file \
     | sed -e 's/[^ ]* //' \
     | jq --compact-output 'del(.kubernetes) | del(.docker)' \
     | gzip - \
-    > $(dirname "$1")/$(basename "$1" .gz).jsonl.gz
+    > $(dirname "$log_gz_file")/$(basename "$log_gz_file" .gz).jsonl.gz
