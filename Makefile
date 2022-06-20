@@ -7,6 +7,7 @@ CLOUDWATCH_FROM_DATE = $(shell ./scripts/determine-cloudwatch-from-date-based-on
 CLOUDWATCH_TO_DATE = $(shell date '+%Y-%m-%d')
 CLOUDWATCH_TARGET_DIR = ./logs/cloudwatch
 CLOUDWATCH_JSONL_FILE = ./logs/ingress.jsonl
+CLOUDWATCH_JSONL_GZ_FILE = $(CLOUDWATCH_JSONL_FILE).gz
 CLOUDWATCH_JSONL_SCHEMA_FILE = $(CLOUDWATCH_JSONL_FILE).bq-schema.json
 
 
@@ -98,7 +99,7 @@ download-events-from-s3:
 		--schema_update_option=ALLOW_FIELD_ADDITION \
 		--source_format=NEWLINE_DELIMITED_JSON \
 		de_proto.sciety_ingress_v1 \
-		"$(CLOUDWATCH_JSONL_FILE).gz"
+		"$(CLOUDWATCH_JSONL_GZ_FILE)"
 
 .do-upload-ingress-logs-from-cloudwatch-to-bigquery:
 	$(MAKE) .cloudwatch-show-info
