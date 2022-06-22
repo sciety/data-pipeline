@@ -18,13 +18,18 @@ def parse_args(argv: Optional[Sequence[str]]) -> argparse.Namespace:
 
 def iter_parse_list_created_script_content_to_json(js_script_content: str) -> Sequence[dict]:
     for m in re.finditer(
-        r"listCreated\(\s*[^']+'([^']+)'",
+        (
+            r"listCreated\("
+            r"[^']+'([^']+)'"
+            r"[^']+'([^']+)'"
+        ),
         js_script_content
     ):
         LOGGER.debug('m: %r', m)
         LOGGER.debug('m: %r', m.group(1))
         yield {
-            'listId': m.group(1)
+            'listId': m.group(1),
+            'name': m.group(2)
         }
 
 
