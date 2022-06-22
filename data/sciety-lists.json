@@ -1,0 +1,310 @@
+[
+  {
+    "listId": "ee7e738a-a1f1-465b-807c-132d273ca952",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Biophysics Colab.",
+    "ownerId": "4bbf0c12-629b-4bb8-91d6-974f4df8efb2",
+    "creationDate": "2021-06-29T08:13:15Z"
+  },
+  {
+    "listId": "dc83aa3b-1691-4356-b697-4257d31a27dc",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by ASAPbio crowd review.",
+    "ownerId": "50401e46-b764-47b7-8557-6bb35444b7c8",
+    "creationDate": "2021-06-29T08:13:16Z"
+  },
+  {
+    "listId": "4654fd6e-cb00-458f-967b-348b41804927",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by NCRC.",
+    "ownerId": "62f9b0d0-8d43-4766-a52a-ce02af61bc6a",
+    "creationDate": "2021-02-18T10:28:54Z"
+  },
+  {
+    "listId": "49e589f1-531d-4447-92b6-e60b6d1c705e",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Rapid Reviews COVID-19.",
+    "ownerId": "5142a5bc-6b18-42b1-9a8d-7342d7d17e94",
+    "creationDate": "2021-05-13T14:33:28Z"
+  },
+  {
+    "listId": "f1561c0f-d247-4e03-934d-52ad9e0aed2f",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2020-08-12T13:59:30Z"
+  },
+  {
+    "listId": "e9606e0e-8fdb-4336-a24a-cc6547d7d950",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by ScreenIT.",
+    "ownerId": "8ccea9c2-e6c8-4dd7-bf1d-37c3fa86ff65",
+    "creationDate": "2020-11-20T10:00:00Z"
+  },
+  {
+    "listId": "f4b96b8b-db49-4b41-9c5b-28d66a83cd70",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by preLights.",
+    "ownerId": "f97bd177-5cb6-4296-8573-078318755bf2",
+    "creationDate": "2021-01-05T11:43:08Z"
+  },
+  {
+    "listId": "5c2e4b99-f5f0-4145-8c87-cadd7a41a1b1",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by PREreview.",
+    "ownerId": "10360d97-bf52-4aef-b2fa-2f60d319edd7",
+    "creationDate": "2020-04-27T10:00:00Z"
+  },
+  {
+    "listId": "f981342c-bf38-4dc8-9569-acda5878c07b",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by PeerJ.",
+    "ownerId": "53ed5364-a016-11ea-bb37-0242ac130002",
+    "creationDate": "2020-08-12T13:53:55Z"
+  },
+  {
+    "listId": "f3dbc188-e891-4586-b267-c99cf3b3808e",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Review Commons.",
+    "ownerId": "316db7d9-88cc-4c26-b386-f067e0f56334",
+    "creationDate": "2020-08-12T13:59:31Z"
+  },
+  {
+    "listId": "a4d57b30-b41c-4c9d-81f0-dccd4cd1d099",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Peer Community In Zoology.",
+    "ownerId": "74fd66e9-3b90-4b5a-a4ab-5be83db4c5de",
+    "creationDate": "2020-08-12T13:59:32Z"
+  },
+  {
+    "listId": "3d69f9e5-6fd2-4266-9cf8-c069bca79617",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Peer Community in Evolutionary Biology.",
+    "ownerId": "19b7464a-edbe-42e8-b7cc-04d1eb1f7332",
+    "creationDate": "2020-08-17T12:07:09Z"
+  },
+  {
+    "listId": "65f661e6-73f9-43e9-9ae6-a84635afb79a",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Peer Community in Ecology.",
+    "ownerId": "32025f28-0506-480e-84a0-b47ef1e92ec5",
+    "creationDate": "2020-08-17T12:56:39Z"
+  },
+  {
+    "listId": "e764d90c-ffea-4b0e-a63e-d2b5236aa1ed",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Peer Community in Animal Science.",
+    "ownerId": "4eebcec9-a4bb-44e1-bde3-2ae11e65daaa",
+    "creationDate": "2020-08-17T12:56:40Z"
+  },
+  {
+    "listId": "24a60cf9-5f45-43f2-beaf-04139e6f0a0e",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Peer Community in Archaeology.",
+    "ownerId": "b90854bf-795c-42ba-8664-8257b9c68b0c",
+    "creationDate": "2021-06-29T08:13:17Z"
+  },
+  {
+    "listId": "dd9d166f-6d25-432c-a60f-6df33ca86897",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Peer Community in Paleontology.",
+    "ownerId": "7a9e97d1-c1fe-4ac2-9572-4ecfe28f9f84",
+    "creationDate": "2020-08-17T12:56:41Z"
+  },
+  {
+    "listId": "cbd478fe-3ff7-4125-ac9f-c94ff52ae0f7",
+    "name": "High interest articles",
+    "description": "Articles that have been identified as high interest by NCRC editors.",
+    "ownerId": "62f9b0d0-8d43-4766-a52a-ce02af61bc6a",
+    "creationDate": "2021-11-24T00:00:00Z"
+  },
+  {
+    "listId": "5ac3a439-e5c6-4b15-b109-92928a740812",
+    "name": "Endorsed articles",
+    "description": "Articles that have been endorsed by Biophysics Colab.",
+    "ownerId": "4bbf0c12-629b-4bb8-91d6-974f4df8efb2",
+    "creationDate": "2021-11-22T15:09:00Z"
+  },
+  {
+    "listId": "f2ce72ba-a982-4156-ab34-4a536bd86cb7",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by Peer Community in Neuroscience.",
+    "ownerId": "af792cd3-1600-465c-89e5-250c48f793aa",
+    "creationDate": "2021-12-02T10:28:00Z"
+  },
+  {
+    "listId": "c5cf299c-2097-4f3d-b362-2475d7bd35cd",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by PeerRef.",
+    "ownerId": "b5f31635-d32b-4df9-92a5-0325a1524343",
+    "creationDate": "2022-01-20T09:41:01Z"
+  },
+  {
+    "listId": "c7237468-aac1-4132-9598-06e9ed68f31d",
+    "name": "Medicine",
+    "description": "Medicine articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-02-01T13:14:00Z"
+  },
+  {
+    "listId": "cb15ef21-944d-44d6-b415-a3d8951e9e8b",
+    "name": "Cell Biology",
+    "description": "Cell Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-02-09T09:43:00Z"
+  },
+  {
+    "listId": "3253c905-8083-4f3d-9e1f-0a8085e64ee5",
+    "name": "Neuroscience",
+    "description": "Neuroscience articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-03T09:25:00Z"
+  },
+  {
+    "listId": "3792ee73-6a7d-4c54-b6ee-0abc18cb8bc4",
+    "name": "Biochemistry and Chemical Biology",
+    "description": "Biochemistry and Chemical Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-10T09:10:00Z"
+  },
+  {
+    "listId": "a059f20a-366d-4790-b1f2-03bfb9b915b6",
+    "name": "Structural Biology and Molecular Biophysics",
+    "description": "Structural Biology and Molecular Biophysics articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-11T09:09:00Z"
+  },
+  {
+    "listId": "c9efbf2e-8d20-4a9a-b407-c25d185b4939",
+    "name": "Computational and Systems Biology",
+    "description": "Computational and Systems Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-11T10:06:00Z"
+  },
+  {
+    "listId": "b2b55ddd-c0f2-4406-b304-b744af989e72",
+    "name": "Bioengineering",
+    "description": "Bioengineering articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-14T10:39:00Z"
+  },
+  {
+    "listId": "977cec9b-7ff6-4cf5-a487-30f0cc544cdb",
+    "name": "Cancer Biology",
+    "description": "Cancer Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-15T09:07:00Z"
+  },
+  {
+    "listId": "1008fbbe-9d14-4737-808f-4170640df9cb",
+    "name": "Developmental Biology",
+    "description": "Developmental Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-16T09:13:00Z"
+  },
+  {
+    "listId": "a9f35fb7-c2fe-4fde-af39-f7c79ea0a497",
+    "name": "Ecology",
+    "description": "Ecology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-16T10:25:00Z"
+  },
+  {
+    "listId": "0453b3c1-d58e-429f-8c1e-588ccc646113",
+    "name": "Epidemiology and Global Health",
+    "description": "Epidemiology and Global Health articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-17T09:06:00Z"
+  },
+  {
+    "listId": "5146099b-22e0-4589-9f16-10586e08ca4b",
+    "name": "Evolutionary Biology",
+    "description": "Evolutionary Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-17T09:07:00Z"
+  },
+  {
+    "listId": "890bf35a-c3da-413a-8cdb-864b7ce91a51",
+    "name": "Genetics and Genomics",
+    "description": "Genetics and Genomics articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-18T09:14:00Z"
+  },
+  {
+    "listId": "b4acc6f3-bf15-4add-ab1f-bc72a8a3da7f",
+    "name": "Immunology and Inflammation",
+    "description": "Immunology and Inflammation articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-18T10:00:00Z"
+  },
+  {
+    "listId": "db62bf5b-bcd4-42eb-bd99-e7a37283041d",
+    "name": "Microbiology and Infectious Disease",
+    "description": "Microbiology and Infectious Disease articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-18T10:13:00Z"
+  },
+  {
+    "listId": "708b4836-0adf-4326-844f-fdf8ef816402",
+    "name": "Molecular Biology",
+    "description": "Molecular Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-18T10:20:00Z"
+  },
+  {
+    "listId": "84577aec-a4ab-4c61-8c2e-b799a3918350",
+    "name": "Pharmacology and Toxicology",
+    "description": "Pharmacology and Toxicology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-18T10:38:00Z"
+  },
+  {
+    "listId": "57a4fa09-d9f5-466d-8038-ea9d29603aef",
+    "name": "Physiology",
+    "description": "Physiology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-18T10:49:00Z"
+  },
+  {
+    "listId": "205415a7-b409-4ded-ada2-3116c953c4c2",
+    "name": "Plant Biology",
+    "description": "Plant Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-21T09:35:00Z"
+  },
+  {
+    "listId": "d3d30687-62ee-4bb6-8723-f8d49dab7882",
+    "name": "Scientific Communication and Education",
+    "description": "Scientific Communication and Education articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-21T09:43:00Z"
+  },
+  {
+    "listId": "c743bc3d-955a-4e97-b897-5e423ef0d3bc",
+    "name": "Synthetic Biology",
+    "description": "Synthetic Biology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-21T09:50:00Z"
+  },
+  {
+    "listId": "86a14824-8a48-4194-b75a-efbca28b90ae",
+    "name": "Zoology",
+    "description": "Zoology articles that have been evaluated by eLife.",
+    "ownerId": "b560187e-f2fb-4ff9-a861-a204f3fc0fb0",
+    "creationDate": "2022-03-21T09:56:00Z"
+  },
+  {
+    "listId": "5498e813-ddad-414d-88df-d1f84696cecd",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by GigaScience.",
+    "ownerId": "d6e1a913-76f8-40dc-9074-8eac033e1bc8",
+    "creationDate": "2022-03-23T10:21:00Z"
+  },
+  {
+    "listId": "794cb0bd-f784-4b58-afde-7427faced494",
+    "name": "Evaluated articles",
+    "description": "Articles that have been evaluated by GigaByte.",
+    "ownerId": "f7a7aec3-8b1c-4b81-b098-f3f2e4eefe58",
+    "creationDate": "2022-03-24T10:19:00Z"
+  }
+]
