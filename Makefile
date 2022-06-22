@@ -151,3 +151,15 @@ generate-sciety-lists-json: venv
 	venv/bin/python -m sciety_data_pipeline.tools.convert_list_created_script_to_json \
 		--js-script=../sciety/src/shared-read-models/lists/list-creation-data.ts \
 		--output-json-file=data/sciety-lists.json
+
+bq-update-lists:
+	cat "data/sciety-lists.json" \
+		| jq -c '.[]' \
+		| tee "data/sciety-lists.jsonl" \
+		&& bq load \
+		--project_id=elife-data-pipeline \
+		--autodetect \
+		--replace \
+		--source_format=NEWLINE_DELIMITED_JSON \
+		de_proto.sciety_list_v1 \
+		"data/sciety-lists.jsonl"
