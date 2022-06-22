@@ -23,6 +23,7 @@ def iter_parse_list_created_script_content_to_json(js_script_content: str) -> Se
             r"[^']+'([^']+)'"
             r"[^']+'([^']+)'"
             r"[^']+'([^']+)'"
+            r"[^']+'([^']+)'"
         ),
         js_script_content
     ):
@@ -31,7 +32,8 @@ def iter_parse_list_created_script_content_to_json(js_script_content: str) -> Se
         yield {
             'listId': m.group(1),
             'name': m.group(2),
-            'description': m.group(3)
+            'description': m.group(3),
+            'ownerId': m.group(4)
         }
 
 
