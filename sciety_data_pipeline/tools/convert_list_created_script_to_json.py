@@ -22,6 +22,7 @@ def iter_parse_list_created_script_content_to_json(js_script_content: str) -> Se
             r"listCreated\("
             r"[^']+'([^']+)'"
             r"[^']+'([^']+)'"
+            r"[^']+'([^']+)'"
         ),
         js_script_content
     ):
@@ -29,7 +30,8 @@ def iter_parse_list_created_script_content_to_json(js_script_content: str) -> Se
         LOGGER.debug('m: %r', m.group(1))
         yield {
             'listId': m.group(1),
-            'name': m.group(2)
+            'name': m.group(2),
+            'description': m.group(3)
         }
 
 

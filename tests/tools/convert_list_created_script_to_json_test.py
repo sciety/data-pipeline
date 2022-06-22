@@ -46,8 +46,10 @@ class TestParseListCreatedScriptContentToJson:
         ))
         assert json_list == [{
             'listId': LIST_ID_1,
-            'name': NAME_1
+            'name': NAME_1,
+            'description': DESCRIPTION_1
         }, {
             'listId': LIST_ID_2,
-            'name': NAME_2
+            'name': NAME_2,
+            'description': DESCRIPTION_2
         }]
