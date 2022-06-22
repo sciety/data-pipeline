@@ -48,10 +48,12 @@ class TestParseListCreatedScriptContentToJson:
             'listId': LIST_ID_1,
             'name': NAME_1,
             'description': DESCRIPTION_1,
-            'ownerId': OWNER_ID_1
+            'ownerId': OWNER_ID_1,
+            'creationDate': TIMESTAMP_1
         }, {
             'listId': LIST_ID_2,
             'name': NAME_2,
             'description': DESCRIPTION_2,
-            'ownerId': OWNER_ID_2
+            'ownerId': OWNER_ID_2,
+            'creationDate': TIMESTAMP_2
         }]
