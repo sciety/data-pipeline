@@ -3,7 +3,7 @@ import logging
 import json
 import re
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import Iterable, Optional, Sequence
 
 
 LOGGER = logging.getLogger(__name__)
@@ -16,7 +16,7 @@ def parse_args(argv: Optional[Sequence[str]]) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
-def iter_parse_list_created_script_content_to_json(js_script_content: str) -> Sequence[dict]:
+def iter_parse_list_created_script_content_to_json(js_script_content: str) -> Iterable[dict]:
     for m in re.finditer(
         (
             r"listCreated\("
