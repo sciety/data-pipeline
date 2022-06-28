@@ -19,10 +19,15 @@ CLOUDWATCH_JSONL_SCHEMA_FILE = $(CLOUDWATCH_JSONL_FILE).bq-schema.json
 clean:
 	rm -r venv
 
-venv: requirements.txt requirements.build.txt
+venv: requirements.txt requirements.build.txt requirements.dev.txt
 	python3 -m venv venv
 	./venv/bin/pip install -r requirements.build.txt
-	./venv/bin/pip install -r requirements.txt
+	./venv/bin/pip install \
+		-r requirements.txt \
+		-r requirements.dev.txt
+
+dev-watch:
+	./venv/bin/python -m pytest_watch -- tests
 
 ship-events-to-s3:
 	kubectl run --rm --attach ship-events \
@@ -142,3 +147,20 @@ bq-update-known-users:
 		--source_format=NEWLINE_DELIMITED_JSON \
 		de_proto.sciety_known_user_v1 \
 		"data/sciety-known-users.jsonl"
+
+generate-sciety-lists-json: venv
+	venv/bin/python -m sciety_data_pipeline.tools.convert_list_created_script_to_json \
+		--js-script=../sciety/src/shared-read-models/lists/list-creation-data.ts \
+		--output-json-file=data/sciety-lists.json
+
+bq-update-lists:
+	cat "data/sciety-lists.json" \
+		| jq -c '.[]' \
+		| tee "data/sciety-lists.jsonl" \
+		&& bq load \
+		--project_id=elife-data-pipeline \
+		--autodetect \
+		--replace \
+		--source_format=NEWLINE_DELIMITED_JSON \
+		de_proto.sciety_list_v1 \
+		"data/sciety-lists.jsonl"
