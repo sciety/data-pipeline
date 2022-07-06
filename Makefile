@@ -91,7 +91,8 @@ download-events-from-s3:
 		"$(CLOUDWATCH_JSONL_GZ_FILE)"
 
 .generate-schema-for-cloudwatch-jsonl-gz-file: venv
-	zcat "$(CLOUDWATCH_JSONL_GZ_FILE)" \
+	cat "$(CLOUDWATCH_JSONL_GZ_FILE)" \
+		| zcat \
 		| venv/bin/generate-schema \
 		> "$(CLOUDWATCH_JSONL_SCHEMA_FILE)"
 

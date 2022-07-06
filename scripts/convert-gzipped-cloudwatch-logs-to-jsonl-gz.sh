@@ -17,4 +17,4 @@ find "${local_cloudwatch_dir}" -type 'f' \
     | xargs -n 1 ./scripts/convert-gzipped-cloudwatch-logs-to-bigquery-jsonl-gz.sh
 
 echo "combining jsonl files to ${target_jsonl_gz_file}"
-(find "${local_cloudwatch_dir}" -type 'f' | grep jsonl.gz | xargs zcat | gzip -) > "${target_jsonl_gz_file}"
+(find "${local_cloudwatch_dir}" -type 'f' | grep jsonl.gz | xargs gunzip -c | gzip -) > "${target_jsonl_gz_file}"

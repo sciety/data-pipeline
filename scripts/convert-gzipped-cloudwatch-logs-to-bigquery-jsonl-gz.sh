@@ -8,7 +8,8 @@ target_jsonl_gz_file="$common_filename.jsonl.gz"
 
 echo "converting $log_gz_file to $target_jsonl_gz_file"
 
-zcat $log_gz_file \
+cat $log_gz_file \
+    | zcat \
     | sed -e 's/[^ ]* //' \
     | jq --compact-output 'del(.kubernetes) | del(.docker)' \
     | gzip - \
