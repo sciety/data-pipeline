@@ -14,3 +14,4 @@ echo "downloading from ${logs_url} to ${target_dir}"
 
 mkdir -p "${target_dir}"
 aws s3 cp --recursive ${logs_url} "${target_dir}"
+gunzip -r "${target_dir}"
