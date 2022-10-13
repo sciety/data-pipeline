@@ -98,5 +98,15 @@
     "id": "f7a7aec3-8b1c-4b81-b098-f3f2e4eefe58",
     "name": "GigaByte",
     "slug": "gigabyte"
+  },
+  {
+    "id": "bc1f956b-12e8-4f5c-aadc-70f91347bd18",
+    "name": "Arcadia Science",
+    "slug": "arcadia-science"
+  },
+  {
+    "id": "36fbf532-ed07-4573-87fd-b0e22ee49827",
+    "name": "ASAPbio-SciELO Preprint crowd review",
+    "slug": "asapbio-scielo-preprint-crowd-review"
   }
 ]
