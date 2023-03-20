@@ -13,6 +13,7 @@ RUN_GCLOUD = docker run \
 	--volumes-from gcloud-config \
 	--volume $$PWD/events.bq-schema.json:/events.bq-schema.json:ro \
 	--volume $$PWD/events.jsonl:/events.jsonl:ro \
+	--volume $$PWD/logs:/logs:ro \
 	--rm \
 	google/cloud-sdk:422.0.0-slim
 
@@ -107,7 +108,7 @@ download-events-from-s3:
 		> "$(CLOUDWATCH_JSONL_SCHEMA_FILE)"
 
 .upload-ingress-jsonl-to-bigquery:
-	bq load \
+	$(RUN_GCLOUD) bq load \
 		--project_id=elife-data-pipeline \
 		--noreplace \
 		--schema="$(CLOUDWATCH_JSONL_SCHEMA_FILE)" \
