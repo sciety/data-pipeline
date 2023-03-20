@@ -16,7 +16,7 @@ RUN_GCLOUD = docker run \
 	--volume $$PWD/data:/data:ro \
 	--volume $$PWD/logs:/logs:ro \
 	--rm \
-	google/cloud-sdk:422.0.0-slim
+	google/cloud-sdk:422.0.0-alpine
 
 
 .PHONY: clean download-events-from-s3 ship-events-to-s3 update*
@@ -26,7 +26,7 @@ RUN_GCLOUD = docker run \
 
 
 gcloud-login:
-	docker run -ti --name gcloud-config google/cloud-sdk:422.0.0-slim gcloud auth login
+	docker run -ti --name gcloud-config google/cloud-sdk:422.0.0-alpine gcloud auth login
 
 
 clean:
