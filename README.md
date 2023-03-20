@@ -3,9 +3,9 @@
 ### Software Dependencies
 
 - `python3`
-- `python3-venv` (might be includeded in python3)
+- `python3-venv` (might be included in python3)
 - `kubectl`
-- `gcloud-sdk` which provides `bq`
+- `docker`
 - `awscli`
 - `make`
 - `jq`
@@ -27,7 +27,8 @@ Run:
 ```
 make gcloud-login
 ```
-Follow the prompt to open the browser and authenticate
+Follow the prompt to open the browser and authenticate.
+This stores authentication into a docker volume, pruning of volumes might affect this.
 
 ### Update Data Studio
 
