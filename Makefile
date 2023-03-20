@@ -19,7 +19,7 @@ RUN_GCLOUD = docker run \
 	google/cloud-sdk:422.0.0-slim
 
 
-.PHONY: clean download-events-from-s3 ship-events-to-s3 update* bq-update-groups
+.PHONY: clean download-events-from-s3 ship-events-to-s3 update*
 
 .env:
 	cp .env.example .env
@@ -136,18 +136,6 @@ download-events-from-s3:
 update-datastudio: \
 	.upload-events-from-db-to-bigquery \
 	.upload-ingress-logs-from-cloudwatch-to-bigquery
-
-bq-update-groups:
-	cat "data/sciety-groups.json" \
-		| jq -c '.[]' \
-		| tee "data/sciety-groups.jsonl" \
-		&& bq load \
-		--project_id=elife-data-pipeline \
-		--autodetect \
-		--replace \
-		--source_format=NEWLINE_DELIMITED_JSON \
-		de_proto.sciety_group_v1 \
-		"data/sciety-groups.jsonl"
 
 bq-update-known-users:
 	cat "data/sciety-known-users.json" \
