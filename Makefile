@@ -11,8 +11,8 @@ CLOUDWATCH_JSONL_SCHEMA_FILE = $(CLOUDWATCH_JSONL_FILE).bq-schema.json
 
 RUN_GCLOUD = docker run \
 	--volumes-from gcloud-config \
-	--volume ./events.bq-schema.json:/events.bq-schema.json:ro \
-	--volume ./events.jsonl:/events.jsonl:ro \
+	--volume $$PWD/events.bq-schema.json:/events.bq-schema.json:ro \
+	--volume $$PWD/events.jsonl:/events.jsonl:ro \
 	--rm \
 	google/cloud-sdk:422.0.0-slim
 
