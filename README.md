@@ -20,6 +20,15 @@ No secrets are stored in this repo. Credentials live on your machine.
 - Access to the k8s cluster: _libero-eks--franklin_
 - GCloud access to `elife-data-pipeline` project
 
+
+### Gcloud login
+
+Run:
+```
+make gcloud-login
+```
+Follow the prompt to open the browser and authenticate
+
 ### Update Data Studio
 
 The export might take a few minutes.
