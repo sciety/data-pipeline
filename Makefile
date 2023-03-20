@@ -9,11 +9,23 @@ CLOUDWATCH_TARGET_DIR = ./logs/cloudwatch
 CLOUDWATCH_JSONL_FILE = ./logs/ingress.jsonl
 CLOUDWATCH_JSONL_SCHEMA_FILE = $(CLOUDWATCH_JSONL_FILE).bq-schema.json
 
+RUN_GCLOUD = docker run \
+	--volumes-from gcloud-config \
+	--volume ./events.bq-schema.json:/events.bq-schema.json:ro \
+	--volume ./events.jsonl:/events.jsonl:ro \
+	--rm \
+	google/cloud-sdk:422.0.0-slim
+
 
 .PHONY: clean download-events-from-s3 ship-events-to-s3 update* bq-update-groups
 
 .env:
 	cp .env.example .env
+
+
+gcloud-login:
+	docker run -ti --name gcloud-config google/cloud-sdk:422.0.0-slim gcloud auth login
+
 
 clean:
 	rm -r venv
@@ -59,7 +71,7 @@ download-events-from-s3:
 		| venv/bin/generate-schema > events.bq-schema.json
 
 .bq-update-events: .gs-events-json-to-jsonl .bq-generate-schema
-	bq load \
+	$(RUN_GCLOUD) bq load \
 		--project_id=elife-data-pipeline \
 		--replace \
 		--schema=events.bq-schema.json \
@@ -149,7 +161,7 @@ bq-update-known-users:
 
 generate-sciety-lists-json: venv
 	venv/bin/python -m sciety_data_pipeline.tools.convert_list_created_script_to_json \
-		--js-script=../sciety/src/shared-read-models/lists/list-creation-data.ts \
+		--js-script=../sciety/src/data/hardcoded-list-creation-events.ts \
 		--output-json-file=data/sciety-lists.json
 
 bq-update-lists:
