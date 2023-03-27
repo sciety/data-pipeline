@@ -134,8 +134,7 @@ download-events-from-s3:
 	fi
 
 update-datastudio: \
-	.upload-events-from-db-to-bigquery \
-	.upload-ingress-logs-from-cloudwatch-to-bigquery
+	.upload-events-from-db-to-bigquery
 
 bq-update-known-users:
 	cat "data/sciety-known-users.json" \
