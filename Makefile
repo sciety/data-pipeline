@@ -55,8 +55,7 @@ ship-events-to-s3:
 		--env=AWS_SECRET_ACCESS_KEY=$$(kubectl get secret sciety-events-shipper-aws-credentials -o json | jq -r '.data."secret"'| base64 -d) \
 		-- \
 		bash -c 'yum install --assumeyes --quiet postgresql \
-			&& psql -c "copy (select json_agg(events) from events) To STDOUT;" > ./events.json \
-			&& sed --in-place --expression="s/\\\\n//g" ./events.json \
+			&& psql -A -t -c "select json_agg(events) from events;" > ./events.json \
 			&& aws s3 cp "./events.json" "s3://sciety-data-extractions/events.json" \
 		'
 
@@ -65,7 +64,6 @@ download-events-from-s3:
 
 .gs-events-json-to-jsonl:
 	cat ./events.json \
-	    | sed -e 's/\\"/"/' \
 		| jq -c '.[]' \
 		> ./events.jsonl \
 
