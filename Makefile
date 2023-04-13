@@ -65,6 +65,7 @@ download-events-from-s3:
 
 .gs-events-json-to-jsonl:
 	cat ./events.json \
+	    | sed -e 's/\\"/"/' \
 		| jq -c '.[]' \
 		> ./events.jsonl \
 
